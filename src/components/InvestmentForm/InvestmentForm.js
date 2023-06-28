@@ -7,11 +7,13 @@ const initialUserInput = {
   duration: 10,
 };
 
-const InvestmentForm = () => {
+const InvestmentForm = (props) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    props.onCalculate(userInput);
   };
 
   const resetHandler = () => {
