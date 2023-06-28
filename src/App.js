@@ -18,7 +18,6 @@ function App() {
     const expectedReturn = userInput["expected-return"] / 100;
     const duration = userInput["duration"];
 
-    // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = currentSavings * expectedReturn;
       currentSavings += yearlyInterest + yearlyContribution;
@@ -37,7 +36,13 @@ function App() {
 
       <InvestmentForm onCalculate={calculateHandler} />
 
-      <ResultsTable />
+      {!userInput && <p>No investment calculated yet.</p>}
+      {userInput && (
+        <ResultsTable
+          data={yearlyData}
+          initialInvestment={userInput["current-savings"]}
+        />
+      )}
     </div>
   );
 }
